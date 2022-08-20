@@ -65,7 +65,7 @@ function App(props) {
      <button style={{ width:190 , margin:5 }} type="button" className="btn btn-primary">{<SVGIcon19 />}  <div style={{justifycontent:"left"}} >   </div> Voicemail</button>
      <button style={{ width:190 , margin:5 }} type="button" className="btn btn-primary">{<SVGIcon15 />}  <div style={{justifycontent:"left"}} >   </div> Fax</button>
      <button style={{ width:190 , margin:5 }} type="button" className="btn btn-primary">{<SVGIcon16 />}  <div style={{justifycontent:"left"}} >   </div> Notes</button>
-     <Toggle toggled={toggled} onClick={handleClick} /> 
+     <Toggle toggled={toggled} onClick={handleClick} />
     
     </div>}
 
@@ -83,10 +83,13 @@ function App(props) {
    <button style={{ width:190 , margin:5 }} type="button" className="btn btn-light">{<SVGIcon12 />}  <div style={{justifycontent:"left"}} >   </div> Voicemail</button>
    <button style={{ width:190 , margin:5 }} type="button" className="btn btn-light">{<SVGIcon6 />}  <div style={{justifycontent:"left"}} >   </div> Fax</button>
    <button style={{ width:190 , margin:5 }} type="button" className="btn btn-light">{<SVGIcon10 />}  <div style={{justifycontent:"left"}} >   </div> Notes</button>
-   <Toggle toggled={toggled} onClick={handleClick} /> 
+   <Toggle toggled={toggled} onClick={handleClick} />
 
    </div>}   }  
 
+
+
+  function Display2 () { return <div> <Display1/> <Toggle toggled={toggled} onClick={handleClick} /></div>   }
 
    function Display1(  )
 
@@ -102,8 +105,9 @@ function App(props) {
   
   return (
     <div  id='main' class="p-3 mb-2 bg-light text-dark"  className="App">      
-     <Display1/>   
-     <Toggle toggled={toggled} onClick={handleClick} />
+     <Display2/>   
+     <div id='thetoggle'>  <Toggle toggled={toggled} onClick={handleClick} /> </div>
+     
     </div>
   )
 }
