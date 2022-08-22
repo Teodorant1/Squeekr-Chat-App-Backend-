@@ -43,16 +43,24 @@
   position:absolute;
 }
 
-#thetoggle
-{  background-color: gray;  }
 
 #main{
   background-color: antiquewhite;
 }
 
+#chatbox{
+  left:510px; 
+  width: 50%; 
+  position:fixed;
+}
 
 
+#smscontacts{
 
+  left: 230px; 
+   
+  position:fixed;
+}
 
 .flex-container {
   display: flex;

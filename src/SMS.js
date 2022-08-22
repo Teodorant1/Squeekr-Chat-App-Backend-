@@ -11,43 +11,62 @@ import './App.css';
 
 export default function SMS  ({styleprop}) 
 {  
-    const [currentContact, setcurrentcontact] = useState("placeholder 2");
     const [currentmessages, setcurrentmessages]
      = useState
-     ([{"Author" : "Author" ,
-        "Text"   : "Text",
-        "Size"    :  "size"} ]);
+     ({"Name"    : "Names 1" ,
+     "messages": 
+     [{"Author" : "Author",
+       "Text"   : "Text",
+      "Size"    :  "size"}
+   ]});
 
     const [contacts, getcontacts] 
     = useState([
-       {"Name"    : "Names will go here",
+       {"Name"    : "Names 1" ,
        "messages": 
        [{"Author" : "Author",
          "Text"   : "Text",
         "Size"    :  "size"}
-     ]} 
-          ]);
+     ]}
+     ,{"Name"    : "Names 2",
+     "messages": 
+     [{"Author" : "Author",
+       "Text"   : "Text",
+      "Size"    :  "size"}
+   ]},
+   {"Name"    : "Names 3",
+       "messages": 
+       [{"Author" : "Author",
+         "Text"   : "Text",
+        "Size"    :  "size"}
+     ]}
+     ,
+     {"Name"    : "Names 4",
+       "messages": 
+       [{"Author" : "Author",
+         "Text"   : "Text",
+        "Size"    :  "size"}
+     ]}]);
 
 function handleFilter ( contactname ) 
-{ const kontakts  = contacts;
-  const filteredKontakts = kontakts.filter (value => { return value.Name != contactname} );
-
-    setcurrentmessages(filteredKontakts);
-    console.log("hooray");
-
+{ var newArray = contacts.filter(function (el) 
+  {return el.Name == contactname;} )
+ console.log(newArray);
+ setcurrentmessages(newArray);
+ console.log(currentmessages);
 }
 
 function ChatBox () {
     return <div id='chatbox'>
         <table className='table'>
            <thead>
-            <tr> <th> <div class="bg-light p-2 text-dark bg-opacity-75">Contacts  </div> </th> </tr>
+            <tr> <th> <div class="p-3 mb-2 bg-dark text-white">Messages  </div> </th> </tr>
             </thead> 
+            
             <tbody>
-            {currentmessages.map( message =>(   
+            {currentmessages.messages.map( message =>(   
       <tr key = {message.Size} >
-      <td> <div class="bg-light p-2 text-dark bg-opacity-75">{message.Author} </div></td>
-      <td> <div class="bg-light p-2 text-dark bg-opacity-75">{message.Text} </div></td>
+      <td> <div class="p-3 mb-2 bg-dark text-white">{message.Author+" : " + message.Text} </div></td>
       </tr>))}
             </tbody>
               </table>
@@ -55,10 +74,10 @@ function ChatBox () {
 }
 
 function ContactMap (  ) 
-{ return (<div id='contactmap'>
+{ return (<div id='smscontacts'>
 <table  className='table'>
 <thead><tr>
-<th><div class="bg-light p-2 text-dark bg-opacity-75">Contacts</div></th>
+<th><div class="p-3 mb-2 bg-dark text-white">Contacts</div></th>
 </tr>
 </thead>
 
@@ -66,12 +85,12 @@ function ContactMap (  )
 
 {contacts.map( contact =>(   
       <tr key = {contact.Name} >
-      <td> <div class="bg-light p-2 text-dark bg-opacity-75">{contact.Name} </div></td>
+      <td> <div class="p-3 mb-2 bg-dark text-white">{contact.Name} </div></td>
       <td>  <button 
       style={{color:"white" , backgroundColor: "red" }}
       onClick={()=>
-        {setcurrentcontact(contact.Name);
-         handleFilter(currentContact);
+        {
+         handleFilter(contact.Name);
         }}     
       className="btn btn-danger btn-sm"> Upvote </button> </td>
       </tr>))}
