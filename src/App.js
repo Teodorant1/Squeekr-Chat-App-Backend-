@@ -1,25 +1,10 @@
-import react, {component} from 'react';
-import axios, { Axios } from 'axios';
-import { ReactComponent as SVGIcon1 } from "./icons/Chat.svg";
+
 import { ReactComponent as SVGIcon2 } from "./icons/ChatFilled.svg";
-import { ReactComponent as SVGIcon } from "./icons/Dashboard.svg";
 import { ReactComponent as SVGIcon3 } from "./icons/DashboardFilled.svg";
 import { ReactComponent as SVGIcon4 } from "./icons/logo.svg";
-
-import { ReactComponent as SVGIcon5 } from "./icons/Fax.svg";
 import { ReactComponent as SVGIcon6 } from "./icons/FaxFilled.svg";
-import { ReactComponent as SVGIcon7 } from "./icons/Notes.svg";
-import { ReactComponent as SVGIcon8 } from "./icons/NotesFilled.svg";
-
-import { ReactComponent as SVGIcon9 } from "./icons/SMS.svg";
 import { ReactComponent as SVGIcon10 } from "./icons/SMSFilled.svg";
-import { ReactComponent as SVGIcon11 } from "./icons/Voicemail.svg";
 import { ReactComponent as SVGIcon12 } from "./icons/VoicemailFilled.svg";
-
-import { ReactComponent as SVGMOON } from "./icons/1moon-svgrepo-com.svg";
-import { ReactComponent as SVGSUN } from "./icons/1sun-svgrepo-com.svg";
-
-
 import { ReactComponent as SVGIcon13 } from "./icons/Dark-Chat.svg";
 import { ReactComponent as SVGIcon14 } from "./icons/Dark-Dash.svg";
 import { ReactComponent as SVGIcon15 } from "./icons/Dark-Fax.svg";
@@ -35,8 +20,7 @@ import Toggle from "./Toggle";
 import './App.css';
 import React from 'react';
 import { useState } from 'react';
-
-import './App.css';
+import SMS from "./SMS";  
 
 
  
@@ -95,11 +79,9 @@ function App(props) {
 
 
    {  if (toggled === true ){   return <div class="p-3 mb-2 bg-dark text-white flex-container"> 
-  <div> <Leftmenu/> </div>  <div class="p-3 mb-2 bg-dark text-white"  id='centermenu' > Welcome to Squeekr-v4 </div> </div> } 
+  <div> <Leftmenu/> </div>  <div class="p-3 mb-2 bg-dark text-white"  id='centermenu' > <SMS/>  </div> </div> } 
   else { return <div class="p-3 mb-2 bg-light text-dark flex-container"> 
-  <div> <LeftmenuLight/> </div>  <div class="p-3 mb-2 bg-light text-dark"  id='centermenu' > Welcome to Squeekr-v4 </div> </div>   }  
-
-}
+  <div> <LeftmenuLight/> </div>  <div class="p-3 mb-2 bg-light text-dark"  id='centermenu' > <SMS/>  </div> </div>}}
 
 
   
