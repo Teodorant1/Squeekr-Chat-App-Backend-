@@ -73,13 +73,14 @@ function App(props) {
 
 
 
-  function Display2 () { return <div> <Display1/> <Toggle toggled={toggled} onClick={handleClick} /></div>   }
+  function Display2 () { return <div> <Display1/></div>   }
 
    function Display1(  )
 
 
    {  if (toggled === true ){   return <div class="p-3 mb-2 bg-dark text-white flex-container"> 
-  <div> <Leftmenu/> </div>  <div class="p-3 mb-2 bg-dark text-white"  id='centermenu' > <SMS/>  </div> </div> } 
+  <div> <Leftmenu/> </div>  <div class="p-3 mb-2 bg-dark text-white"  id='centermenu' > 
+  <div><SMS/> </div>  </div> </div> } 
   else { return <div class="p-3 mb-2 bg-light text-dark flex-container"> 
   <div> <LeftmenuLight/> </div>  <div class="p-3 mb-2 bg-light text-dark"  id='centermenu' > <SMS/>  </div> </div>}}
 
@@ -88,7 +89,7 @@ function App(props) {
   return (
     <div  id='main' class="p-3 mb-2 bg-light text-dark"  className="App">      
      <Display2/>   
-     <div id='thetoggle'>  <Toggle toggled={toggled} onClick={handleClick} /> </div>
+
      
     </div>
   )
