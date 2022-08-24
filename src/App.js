@@ -79,9 +79,9 @@ function App(props) {
 
    {  if (toggled === true ){   return <div class="p-3 mb-2 bg-dark text-white flex-container"> 
   <div> <Leftmenu/> </div>  <div class="p-3 mb-2 bg-dark text-white"  id='centermenu' > 
-  <div id="sms1" ><SMS/> </div>  </div> </div> } 
+  <div id="sms1" ><SMS styleprop={"p-3 mb-2 bg-dark text-white"} /> </div>  </div> </div> } 
   else { return <div class="p-3 mb-2 bg-light text-dark flex-container"> 
-  <div> <LeftmenuLight/> </div>  <div class="p-3 mb-2 bg-light text-dark"  id='centermenu' > <SMS/>  </div> </div>}}
+  <div> <LeftmenuLight/> </div>  <div class="p-3 mb-2 bg-light text-dark"  id='centermenu' > <SMS styleprop={"p-3 mb-2 bg-light text-dark"} />  </div> </div>}}
 
 
   
