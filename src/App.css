@@ -28,7 +28,9 @@
   top: 100%;
   bottom: 100%;
   min-height: max-content;
-
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   position: relative;
   right: 0px;
 }
@@ -44,6 +46,16 @@
 }
 
 #leftmenu {
+  top: 0%;
+  width: 230px;
+  left: 0%;
+  right: 0px;
+  bottom: 0%;
+
+  position: absolute;
+}
+
+#leftmenulight {
   top: 0%;
   width: 230px;
   left: 0%;

@@ -10,16 +10,13 @@ import "./App.css";
 import * as base64 from "base-64";
 import * as utf8 from "utf8";
 
-export default function SMS({ styleprop }) {
-
-  
+export default function SMS({ props }) {
   const [ipAddress0, setipAddress0] = useState(
     "https://api2.questblue.com/smsv2"
   );
 
-  const [style, setstyle] = useState(styleprop.value);
+  const [style, setstyle] = useState();
 
-  
   const [ipAddress1, setipAddress1] = useState(
     "https://teodorantinsanitytopicsimulator.com:4444/"
   );
@@ -31,10 +28,9 @@ export default function SMS({ styleprop }) {
   const [phonenumber, setphonenumber] = useState("paloki");
 
   const [headers, setheaders] = useState(
-    "Content-type: application/json" , 
+    "Content-type: application/json",
     "Security-Key: apikey"
-    );
-
+  );
 
   const [currentmessages, setcurrentmessages] = useState({
     Name: "Names 0",
@@ -64,13 +60,11 @@ export default function SMS({ styleprop }) {
   // -H "Security-Key: <your_private_key>" -XPOST https://api2.questblue.com/smsv2 -d
   //"{\"did\":\"11122233333\",\"did_to\":[\"2223334444\"],\"msg\":\"test\",\"file_url\":
   // ['https://somepicture.com/image.png']}"
-  
-  async function handlesetCredentials (event) 
-  {
+
+  async function handlesetCredentials(event) {
     const zusername = document.getElementById("username").value;
     const zpassword = document.getElementById("Password").value;
     const zapikey = document.getElementById("apikey").value;
-
 
     const zphonenumber = document.getElementById("phonenumber").value;
     // 5595001708
@@ -80,56 +74,57 @@ export default function SMS({ styleprop }) {
     setPassword(zpassword);
     setapikey(zapikey);
 
-    setheaders("Content-type: application/json" ,  "Security-Key:"+ apikey);
-    
+    setheaders("Content-type: application/json", "Security-Key:" + apikey);
+
     setphonenumber(zphonenumber);
     setdestonumber(zdestonumber);
     settext(ztext);
   }
 
-  function handlesendsms2 ()
-{  
-    
-  var md5 = require('md5');
-   console.log(md5('message'));
-   console.log(base64.encode(utf8.encode("foo © bar 𝌆 baz")));
-   var data = JSON.stringify({"did":"5595001708","did_to":"5594716064","msg":"test","file_url":"https://somepicture.com/image.png"});
-   var userpass = base64.encode(utf8.encode({username}+':'+{Password}));
-   var keyip = md5({apikey}+"198.0.237.9");
-   var config = 
-   {
-      method: 'post',
-      url: 'https://api2.questblue.com/smsv2',
-      headers: { 
-        'Security-Key' :  keyip ,
-        'Authorization': 'Basic' + userpass ,
-        'Content-Type' : 'application/json', 
-        'User-Agent'   : 'QB API v.2' 
-        
-      },
-      data : data
-    };
-    
-    axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
+  function handlesendsms2() {
+    var md5 = require("md5");
+    console.log(md5("message"));
+    console.log(base64.encode(utf8.encode("foo © bar 𝌆 baz")));
+    var data = JSON.stringify({
+      did: "5595001708",
+      did_to: "5594716064",
+      msg: "test",
+      file_url: "https://somepicture.com/image.png",
     });
+    var userpass = base64.encode(
+      utf8.encode({ username } + ":" + { Password })
+    );
+    var keyip = md5({ apikey } + "clearconverse.io");
+    var config = {
+      method: "post",
+      url: "https://api2.questblue.com/smsv2",
+      headers: {
+        "Security-Key": keyip,
+        Authorization: "Basic" + userpass,
+        "Content-Type": "application/json",
+        "User-Agent": "QB API v.2",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
-
-
-// fetch('https://api2.questblue.com/smsv2', {
-//  method: 'POST',
-//  headers: {
-//      'Content-type': 'application/json',
-//     'Security-Key': 'your_private_key',
-//    'Authorization': 'Basic ' + btoa('username:password')
-//  },
-// body: '{"did":"11122233333","did_to":["2223334444"],"msg":"test","file_url": [\'https://somepicture.com/image.png\']}'
-//  });
+  // fetch('https://api2.questblue.com/smsv2', {
+  //  method: 'POST',
+  //  headers: {
+  //      'Content-type': 'application/json',
+  //     'Security-Key': 'your_private_key',
+  //    'Authorization': 'Basic ' + btoa('username:password')
+  //  },
+  // body: '{"did":"11122233333","did_to":["2223334444"],"msg":"test","file_url": [\'https://somepicture.com/image.png\']}'
+  //  });
   function handleFilter(contactname) {
     var newArray = contacts.filter(function (el) {
       return el.Name == contactname;
@@ -219,7 +214,8 @@ export default function SMS({ styleprop }) {
             handlesetCredentials();
           }}
           type="submit"
-          class="btn btn-primary">
+          class="btn btn-primary"
+        >
           Set Credentials
         </button>
         <button
@@ -311,7 +307,7 @@ export default function SMS({ styleprop }) {
   }
 
   return (
-    <div class={styleprop} id="smspage">
+    <div class={props} id="smspage">
       <div class="flex-container">
         <div>
           <ContactMap />
