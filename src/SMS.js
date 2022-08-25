@@ -26,7 +26,7 @@ export default function SMS({ props }) {
   const [destonumber, setdestonumber] = useState("paloki");
   const [text, settext] = useState("paloki");
   const [phonenumber, setphonenumber] = useState("paloki");
-
+  const [visiblestatus, setvisiblestatus] = useState("invisible");
   const [headers, setheaders] = useState(
     "Content-type: application/json",
     "Security-Key: apikey"
@@ -268,9 +268,17 @@ export default function SMS({ props }) {
     );
   }
 
+  function togglecontacts() {
+    if (visiblestatus === "visible") {
+      setvisiblestatus("invisible");
+    } else if (visiblestatus === "invisible") {
+      setvisiblestatus("visible");
+    }
+  }
+
   function ContactMap() {
     return (
-      <div>
+      <div class={visiblestatus}>
         <table className="table">
           <thead>
             <tr>
@@ -308,10 +316,27 @@ export default function SMS({ props }) {
     );
   }
 
+  function Buttonpluscontact() {
+    return (
+      <div>
+        <button
+          onClick={() => {
+            togglecontacts();
+          }}
+          type="submit"
+          class="btn btn-primary"
+        >
+          HIDE/SHOW CONTACTS
+        </button>
+        <ContactMap />
+      </div>
+    );
+  }
+
   return (
     <div class={props} id="smspage">
       <div class="flex-container">
-        <ContactMap />
+        <Buttonpluscontact />
 
         <div>
           <ChatBox />
