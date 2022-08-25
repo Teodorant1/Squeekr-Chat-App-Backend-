@@ -94,7 +94,7 @@ export default function SMS({ props }) {
     var userpass = base64.encode(
       utf8.encode({ username } + ":" + { Password })
     );
-    var keyip = md5({ apikey } + "clearconverse.io");
+    var keyip = md5({ apikey } + "198.0.237.9");
     var config = {
       method: "post",
       url: "https://api2.questblue.com/smsv2",
