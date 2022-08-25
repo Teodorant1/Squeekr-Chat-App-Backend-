@@ -99,7 +99,7 @@ export default function SMS({ props }) {
 
     var config = {
       method: "post",
-      url: "https://api2.questblue.com/smsv2",
+      url: "https://clearconverse.io:4444",
       headers: {
         "Security-Key": keyip,
         Authorization: "Basic" + userpass,
@@ -109,7 +109,7 @@ export default function SMS({ props }) {
       data: data,
     };
 
-    axios("https://clearconverse.io:4444", config)
+    axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
       })
