@@ -94,17 +94,17 @@ export default function SMS({ props }) {
       did: "5595001708",
       did_to: "5594716064",
       msg: "test",
-      file_url: "https://somepicture.com/image.png",
     });
 
     var config = {
       method: "post",
-      url: "https://clearconverse.io:4444",
+      //url: "https://clearconverse.io:4444",
+      url: "https://api2.questblue.com/smsv2",
       headers: {
         "Security-Key": keyip,
         Authorization: "Basic" + userpass,
         "Content-Type": "application/json",
-        "User-Agent": "QB API v.2",
+        // ,"User-Agent": "QB API v.2",
       },
       data: data,
     };
