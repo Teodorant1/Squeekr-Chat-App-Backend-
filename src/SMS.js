@@ -268,7 +268,7 @@ export default function SMS({ props }) {
 
   function ContactMap() {
     return (
-      <div id="smscontacts">
+      <div>
         <table className="table">
           <thead>
             <tr>
@@ -309,14 +309,12 @@ export default function SMS({ props }) {
   return (
     <div class={props} id="smspage">
       <div class="flex-container">
-        <div>
-          <ContactMap />
-        </div>
+        <ContactMap />
+
         <div>
           <ChatBox />
         </div>
       </div>
-      <div> </div>
     </div>
   );
 }

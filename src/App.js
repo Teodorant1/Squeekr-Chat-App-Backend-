@@ -42,7 +42,7 @@ function App() {
           type="button"
           className="btn btn-primary"
         >
-          {<SVGIcon14 />} <div style={{ justifycontent: "left" }}> </div>{" "}
+          {<SVGIcon14 />} <div style={{ justifycontent: "left" }}> </div>
           Dashboard
         </button>
         <button
@@ -145,46 +145,25 @@ function App() {
   function Display1(props1) {
     if (toggled === true) {
       return (
-        <div class={props1}>
-          <div>
-            {" "}
-            <Leftmenu />{" "}
-          </div>{" "}
-          <div id="centermenu">
-            <div id="sms1">
-              <SMS props={props1} />{" "}
-            </div>{" "}
-          </div>{" "}
+        <div class="p-3 mb-2 bg-dark text-white">
+          <Leftmenu />
+          <SMS />
         </div>
       );
     } else {
       return (
-        <div class={props1}>
-          <div>
-            {" "}
-            <LeftmenuLight />{" "}
-          </div>{" "}
-          <div id="centermenu">
-            {" "}
-            <SMS props={props1} />{" "}
-          </div>{" "}
+        <div class="p-3 mb-2 bg-light text-dark">
+          <LeftmenuLight />
+          <SMS />
         </div>
       );
     }
   }
 
   if (toggled === true) {
-    return (
-      <div class="p-3 mb-2 bg-dark text-white">
-        <Display1 props1={"p-3 mb-2 bg-dark text-white"} />
-      </div>
-    );
+    return <Display1 props1={"p-3 mb-2 bg-dark text-white"} />;
   } else {
-    return (
-      <div class="p-3 mb-2 bg-light text-dark">
-        <Display1 props1={"p-3 mb-2 bg-light text-dark"} />
-      </div>
-    );
+    return <Display1 props1={"p-3 mb-2 bg-light text-dark"} />;
   }
 }
 
