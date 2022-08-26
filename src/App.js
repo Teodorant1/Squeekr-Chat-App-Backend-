@@ -13,8 +13,6 @@ import { ReactComponent as SVGIcon17 } from "./icons/Dark-SMS.svg";
 import { ReactComponent as SVGIcon19 } from "./icons/Dark-Voicemail.svg";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { bootstrap } from "bootstrap";
-import { Button } from "bootstrap";
 import Toggle from "./Toggle";
 import "./App.css";
 import React from "react";

@@ -1,21 +1,20 @@
-import react, { component } from "react";
+import react, { component, useLayoutEffect } from "react";
 import axios, { Axios } from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { bootstrap } from "bootstrap";
-import { Button } from "bootstrap";
+
 import React from "react";
 import { useState } from "react";
 import "./App.css";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import * as base64 from "base-64";
 import * as utf8 from "utf8";
+import { left } from "@popperjs/core";
 
 export default function SMS({ props }) {
   const [ipAddress0, setipAddress0] = useState(
     "https://api2.questblue.com/smsv2"
   );
-
-  const [style, setstyle] = useState();
 
   const [ipAddress1, setipAddress1] = useState(
     "https://teodorantinsanitytopicsimulator.com:4444/"
@@ -283,7 +282,7 @@ export default function SMS({ props }) {
           <thead>
             <tr>
               <th>
-                <div class="p-3 mb-2 bg-dark text-white">Contacts</div>
+                <div>Contacts</div>
               </th>
             </tr>
           </thead>
@@ -293,10 +292,11 @@ export default function SMS({ props }) {
               <tr key={contact.Name}>
                 <td>
                   {" "}
-                  <div class="p-3 mb-2 bg-dark text-white">{contact.Size} </div>
+                  <div>{contact.Size} </div>
                 </td>
+                <tr></tr>
                 <td>
-                  {" "}
+                  <div> {contact.Name} </div>{" "}
                   <button
                     style={{ color: "white", backgroundColor: "red" }}
                     onClick={() => {
@@ -306,6 +306,51 @@ export default function SMS({ props }) {
                   >
                     {" "}
                     {contact.Name}{" "}
+                  </button>{" "}
+                  <button
+                    style={{
+                      color: "white",
+                      backgroundColor: "red",
+                      height: "35px",
+                      width: "35px",
+                    }}
+                    onClick={() => {
+                      handleFilter(contact.Name);
+                    }}
+                    className="btn btn-danger btn-sm"
+                  >
+                    {" "}
+                    <BsFillTrashFill />{" "}
+                  </button>
+                  <button
+                    style={{
+                      color: "white",
+                      backgroundColor: "red",
+                      height: "35px",
+                      width: "35px",
+                    }}
+                    onClick={() => {
+                      handleFilter(contact.Name);
+                    }}
+                    className="btn btn-danger btn-sm"
+                  >
+                    {" "}
+                    <BsFillTrashFill />{" "}
+                  </button>
+                  <button
+                    style={{
+                      color: "white",
+                      backgroundColor: "red",
+                      height: "35px",
+                      width: "35px",
+                    }}
+                    onClick={() => {
+                      handleFilter(contact.Name);
+                    }}
+                    className="btn btn-danger btn-sm"
+                  >
+                    {" "}
+                    <BsFillTrashFill />{" "}
                   </button>{" "}
                 </td>
               </tr>
@@ -337,7 +382,6 @@ export default function SMS({ props }) {
     <div class={props} id="smspage">
       <div class="flex-container">
         <Buttonpluscontact />
-
         <div>
           <ChatBox />
         </div>
