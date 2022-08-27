@@ -1,15 +1,15 @@
 import react, { component, useLayoutEffect } from "react";
 import axios, { Axios } from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { render } from "react-dom";
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 import React from "react";
 import { useState } from "react";
 import "./App.css";
 import { BsFillTrashFill } from "react-icons/bs";
-
 import * as base64 from "base-64";
 import * as utf8 from "utf8";
-import { left } from "@popperjs/core";
 
 export default function SMS({ props }) {
   const [ipAddress0, setipAddress0] = useState(
@@ -176,6 +176,9 @@ export default function SMS({ props }) {
               placeholder="apikey"
             />
           </div>
+        </div>
+        <div class="flex-container">
+          {" "}
           <div class="form-group">
             <label htmlFor="phonenumber">
               <h1>phonenumber</h1>
@@ -208,7 +211,7 @@ export default function SMS({ props }) {
               id="text"
               placeholder="text"
             />
-          </div>
+          </div>{" "}
         </div>
         <button
           onClick={() => {
@@ -275,88 +278,76 @@ export default function SMS({ props }) {
     }
   }
 
+  function Contactlist() {
+    const listitems = contacts.map((contact) => (
+      <div key={contact.Name}>
+        {" "}
+        <div class="flex-container">
+          {" "}
+          <button
+            style={{ color: "white", backgroundColor: "red" }}
+            onClick={() => {
+              handleFilter(contact.Name);
+            }}
+            className="btn btn-danger btn-sm"
+          >
+            {" "}
+            {contact.Name}{" "}
+          </button>{" "}
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Options
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <button
+                  style={{
+                    color: "white",
+                    backgroundColor: "red",
+                    height: "35px",
+                    width: "225px",
+                  }}
+                  onClick={() => {
+                    handleFilter(contact.Name);
+                  }}
+                  className="btn btn-danger btn-sm"
+                >
+                  {" "}
+                  DELETE CONTACT
+                  <BsFillTrashFill />{" "}
+                </button>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/#">
+                  Another action
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/#">
+                  Something else here
+                </a>
+              </li>
+            </ul>
+          </div>{" "}
+        </div>
+      </div>
+    ));
+    return <div>{listitems}</div>;
+  }
+
   function ContactMap() {
     return (
       <div class={visiblestatus}>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>
-                <div>Contacts</div>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {contacts.map((contact) => (
-              <tr key={contact.Name}>
-                <td>
-                  {" "}
-                  <div>{contact.Size} </div>
-                </td>
-                <tr></tr>
-                <td>
-                  <div> {contact.Name} </div>{" "}
-                  <button
-                    style={{ color: "white", backgroundColor: "red" }}
-                    onClick={() => {
-                      handleFilter(contact.Name);
-                    }}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    {contact.Name}{" "}
-                  </button>{" "}
-                  <button
-                    style={{
-                      color: "white",
-                      backgroundColor: "red",
-                      height: "35px",
-                      width: "35px",
-                    }}
-                    onClick={() => {
-                      handleFilter(contact.Name);
-                    }}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    <BsFillTrashFill />{" "}
-                  </button>
-                  <button
-                    style={{
-                      color: "white",
-                      backgroundColor: "red",
-                      height: "35px",
-                      width: "35px",
-                    }}
-                    onClick={() => {
-                      handleFilter(contact.Name);
-                    }}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    <BsFillTrashFill />{" "}
-                  </button>
-                  <button
-                    style={{
-                      color: "white",
-                      backgroundColor: "red",
-                      height: "35px",
-                      width: "35px",
-                    }}
-                    onClick={() => {
-                      handleFilter(contact.Name);
-                    }}
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    <BsFillTrashFill />{" "}
-                  </button>{" "}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          {" "}
+          <Contactlist />{" "}
+        </div>
       </div>
     );
   }
