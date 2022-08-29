@@ -285,18 +285,17 @@ export default function SMS({ props }) {
         <div class="flex-container">
           {" "}
           <button
-            style={{ color: "white", backgroundColor: "red" }}
+            class="p-3 mb-2 bg-success text-white"
             onClick={() => {
               handleFilter(contact.Name);
             }}
-            className="btn btn-danger btn-sm"
           >
             {" "}
             {contact.Name}{" "}
           </button>{" "}
           <div class="dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              class="p-3 mb-2 bg-primary btn btn-secondary dropdown-toggle"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -304,14 +303,51 @@ export default function SMS({ props }) {
             >
               Options
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul
+              class="p-3 mb-2 bg-dark text-white dropdown-menu"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <li>
+                <button
+                  style={{
+                    backgroundColor: "#00b1f0",
+                    color: "white",
+                    height: "55px",
+                    width: "200px",
+                  }}
+                  onClick={() => {
+                    handleFilter(contact.Name);
+                  }}
+                >
+                  {" "}
+                  ADD CONTACT
+                  <BsFillTrashFill />{" "}
+                </button>
+              </li>
+              <li>
+                <button
+                  style={{
+                    color: "white",
+                    backgroundColor: "#9dd045",
+                    height: "55px",
+                    width: "200px",
+                  }}
+                  onClick={() => {
+                    handleFilter(contact.Name);
+                  }}
+                >
+                  {" "}
+                  ARCHIVE
+                  <BsFillTrashFill />{" "}
+                </button>
+              </li>
               <li>
                 <button
                   style={{
                     color: "white",
                     backgroundColor: "red",
-                    height: "35px",
-                    width: "225px",
+                    height: "55px",
+                    width: "200px",
                   }}
                   onClick={() => {
                     handleFilter(contact.Name);
@@ -322,16 +358,6 @@ export default function SMS({ props }) {
                   DELETE CONTACT
                   <BsFillTrashFill />{" "}
                 </button>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/#">
-                  Something else here
-                </a>
               </li>
             </ul>
           </div>{" "}
@@ -364,13 +390,16 @@ export default function SMS({ props }) {
         >
           HIDE/SHOW CONTACTS
         </button>
+
+        <div class="invisible"> This is invisible </div>
+
         <ContactMap />
       </div>
     );
   }
 
   return (
-    <div class={props} id="smspage">
+    <div id="smspage">
       <div class="flex-container">
         <Buttonpluscontact />
         <div>
