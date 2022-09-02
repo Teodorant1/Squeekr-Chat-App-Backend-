@@ -1,24 +1,21 @@
-import react, { component, useLayoutEffect } from "react";
+import react, { component, useLayoutEffect, useRef } from "react";
 import axios, { Axios } from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { render } from "react-dom";
 import "jquery/dist/jquery.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { BsFillTrashFill } from "react-icons/bs";
-import * as base64 from "base-64";
-import * as utf8 from "utf8";
+import { IoMdContacts } from "react-icons/io";
+import { RiArchiveDrawerLine } from "react-icons/ri";
 
 export default function SMS({ props }) {
-  const [ipAddress0, setipAddress0] = useState(
-    "https://api2.questblue.com/smsv2"
-  );
+  const [show, setshow] = useState("invisible");
+  const [xaxis, setxaxis] = useState(0);
+  const [yaxis, setyaxis] = useState(0);
 
-  const [ipAddress1, setipAddress1] = useState(
-    "https://teodorantinsanitytopicsimulator.com:4444/"
-  );
   const [username, setusername] = useState("paloki");
   const [Password, setPassword] = useState("paloki");
   const [apikey, setapikey] = useState("paloki");
@@ -26,16 +23,118 @@ export default function SMS({ props }) {
   const [text, settext] = useState("paloki");
   const [phonenumber, setphonenumber] = useState("paloki");
   const [visiblestatus, setvisiblestatus] = useState("invisible");
-  const [headers, setheaders] = useState(
-    "Content-type: application/json",
-    "Security-Key: apikey"
-  );
 
   const [currentmessages, setcurrentmessages] = useState({
     Name: "Names 0",
 
-    messages: [{ Author: "Author0", Text: "Text0", Size: "size0" }],
+    messages: [
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author0", Text: "Text0", Size: "size0" },
+      { Author: "Author100", Text: "Text100", Size: "size100" },
+    ],
   });
+
+  const [rightclicktarget, setrightclicktarget] = useState("Names 0");
 
   const [contacts, getcontacts] = useState([
     {
@@ -55,10 +154,59 @@ export default function SMS({ props }) {
       messages: [{ Author: "Author4", Text: "Text4", Size: "size4" }],
     },
   ]);
-  // curl -i -u <api_username>:<api_password> -H "Content-type: application/json"
-  // -H "Security-Key: <your_private_key>" -XPOST https://api2.questblue.com/smsv2 -d
-  //"{\"did\":\"11122233333\",\"did_to\":[\"2223334444\"],\"msg\":\"test\",\"file_url\":
-  // ['https://somepicture.com/image.png']}"
+  const messagesendref = useRef(null);
+  const [endpoint1, setendpoint1] = useState("http://localhost:8001/getsms");
+  const [endpoint2, setendpoint2] = useState("http://localhost:8002/sendsms");
+  const [endpoint3, setendpoint3] = useState("http://localhost:8003/sms");
+  const [cargo, setcargo] = useState({ method: "getcontacts", user: "john" });
+  const [cargo2, setcargo2] = useState({ method: "getcontacts", user: "john" });
+  const [cargo3, setcargo3] = useState({
+    from: "666666666",
+    to: "458967459867",
+    text: "Its Clear Converse",
+    media: "paloki",
+    segments: 2,
+    type: "SMS",
+  });
+
+  // useEffect(() => {
+  //  messagesendref.current?.scrollintoView();
+  // }, [currentmessages]);
+
+  function sendmessage(event) {
+    //  event.preventDefault();
+
+    const parcela1 =
+      "{ method:" +
+      cargo.method +
+      ",  user:" +
+      cargo.user +
+      ",Paloki:" +
+      cargo.user +
+      "}";
+    const parcela2 = JSON.stringify(cargo3);
+    const parcela3 =
+      "{ from:aquiznos" +
+      cargo3.from +
+      ", to:aquiznos" +
+      cargo3.to +
+      ", text:" +
+      cargo3.text +
+      "}";
+
+    axios
+      .post(endpoint2, parcela3)
+      .then((resp) => {
+        console.log(resp.data);
+      })
+      .catch((error) => console.log(error));
+  }
+
+  useEffect(() => {
+    const handleClick = () => setshow("invisible");
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, []);
 
   async function handlesetCredentials(event) {
     const zusername = document.getElementById("username").value;
@@ -73,59 +221,11 @@ export default function SMS({ props }) {
     setPassword(zpassword);
     setapikey(zapikey);
 
-    setheaders("Content-type: application/json", "Security-Key:" + apikey);
-
     setphonenumber(zphonenumber);
     setdestonumber(zdestonumber);
     settext(ztext);
   }
 
-  function handlesendsms2() {
-    var md5 = require("md5");
-    console.log(md5("message"));
-    console.log(base64.encode(utf8.encode("foo © bar 𝌆 baz")));
-    var userpass = base64.encode(
-      utf8.encode({ username } + ":" + { Password })
-    );
-    var keyip = md5({ apikey } + "198.0.237.9");
-
-    var data = JSON.stringify({
-      did: "5595001708",
-      did_to: "5594716064",
-      msg: "test",
-    });
-
-    var config = {
-      method: "post",
-      //url: "https://clearconverse.io:4444",
-      url: "https://api2.questblue.com/smsv2",
-      headers: {
-        "Security-Key": keyip,
-        Authorization: "Basic" + userpass,
-        "Content-Type": "application/json",
-        // ,"User-Agent": "QB API v.2",
-      },
-      data: data,
-    };
-
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  // fetch('https://api2.questblue.com/smsv2', {
-  //  method: 'POST',
-  //  headers: {
-  //      'Content-type': 'application/json',
-  //     'Security-Key': 'your_private_key',
-  //    'Authorization': 'Basic ' + btoa('username:password')
-  //  },
-  // body: '{"did":"11122233333","did_to":["2223334444"],"msg":"test","file_url": [\'https://somepicture.com/image.png\']}'
-  //  });
   function handleFilter(contactname) {
     var newArray = contacts.filter(function (el) {
       return el.Name == contactname;
@@ -218,16 +318,28 @@ export default function SMS({ props }) {
             handlesetCredentials();
           }}
           type="submit"
-          class="btn btn-primary"
+          style={{
+            backgroundColor: "#00b1f0",
+            color: "white",
+            height: "55px",
+            width: "150px",
+          }}
         >
           Set Credentials
         </button>
         <button
           onClick={() => {
-            handlesendsms2();
+            const element = document.getElementById("theend");
+
+            element.scrollIntoView();
           }}
           type="submit"
-          class="btn btn-primary"
+          style={{
+            backgroundColor: "#00b1f0",
+            color: "white",
+            height: "55px",
+            width: "150px",
+          }}
         >
           SEND SMS
         </button>
@@ -246,9 +358,7 @@ export default function SMS({ props }) {
               {" "}
               <th>
                 {" "}
-                <div class="p-3 mb-2 bg-dark text-white">
-                  SMS MESSAGES FROM:{" " + currentmessages.Name}{" "}
-                </div>{" "}
+                <div>SMS MESSAGES FROM:{" " + currentmessages.Name} </div>{" "}
               </th>{" "}
             </tr>
           </thead>
@@ -264,6 +374,8 @@ export default function SMS({ props }) {
                 </td>
               </tr>
             ))}
+
+            <div id="theend" ref={messagesendref} />
           </tbody>
         </table>
       </div>
@@ -285,82 +397,30 @@ export default function SMS({ props }) {
         <div class="flex-container">
           {" "}
           <button
-            class="p-3 mb-2 bg-success text-white"
+            style={{
+              backgroundColor: "#9dd045",
+              color: "white",
+              height: "55px",
+              width: "150px",
+            }}
+            onContextMenu={(event) => {
+              event.preventDefault();
+
+              sendmessage();
+
+              var newtarget = contact.Name;
+              setrightclicktarget(newtarget);
+              setshow("visible");
+              setyaxis(event.pageY - 60);
+              setxaxis(event.pageX);
+            }}
             onClick={() => {
               handleFilter(contact.Name);
             }}
           >
             {" "}
             {contact.Name}{" "}
-          </button>{" "}
-          <div class="dropdown">
-            <button
-              class="p-3 mb-2 bg-primary btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Options
-            </button>
-            <ul
-              class="p-3 mb-2 bg-dark text-white dropdown-menu"
-              aria-labelledby="dropdownMenuButton1"
-            >
-              <li>
-                <button
-                  style={{
-                    backgroundColor: "#00b1f0",
-                    color: "white",
-                    height: "55px",
-                    width: "200px",
-                  }}
-                  onClick={() => {
-                    handleFilter(contact.Name);
-                  }}
-                >
-                  {" "}
-                  ADD CONTACT
-                  <BsFillTrashFill />{" "}
-                </button>
-              </li>
-              <li>
-                <button
-                  style={{
-                    color: "white",
-                    backgroundColor: "#9dd045",
-                    height: "55px",
-                    width: "200px",
-                  }}
-                  onClick={() => {
-                    handleFilter(contact.Name);
-                  }}
-                >
-                  {" "}
-                  ARCHIVE
-                  <BsFillTrashFill />{" "}
-                </button>
-              </li>
-              <li>
-                <button
-                  style={{
-                    color: "white",
-                    backgroundColor: "red",
-                    height: "55px",
-                    width: "200px",
-                  }}
-                  onClick={() => {
-                    handleFilter(contact.Name);
-                  }}
-                  className="btn btn-danger btn-sm"
-                >
-                  {" "}
-                  DELETE CONTACT
-                  <BsFillTrashFill />{" "}
-                </button>
-              </li>
-            </ul>
-          </div>{" "}
+          </button>
         </div>
       </div>
     ));
@@ -369,7 +429,7 @@ export default function SMS({ props }) {
 
   function ContactMap() {
     return (
-      <div class={visiblestatus}>
+      <div id="contactlist" class={visiblestatus}>
         <div>
           {" "}
           <Contactlist />{" "}
@@ -386,7 +446,10 @@ export default function SMS({ props }) {
             togglecontacts();
           }}
           type="submit"
-          class="btn btn-primary"
+          style={{
+            backgroundColor: "#9dd045",
+            color: "white",
+          }}
         >
           HIDE/SHOW CONTACTS
         </button>
@@ -398,12 +461,87 @@ export default function SMS({ props }) {
     );
   }
 
+  function Rightclickmenu() {
+    return (
+      <div
+        class={show}
+        style={{
+          position: "absolute",
+          top: yaxis,
+          left: xaxis,
+          zIndex: 10,
+        }}
+      >
+        <div class="p-3 mb-2 bg-secondary text-white">
+          <div> {rightclicktarget} </div>
+          <div>
+            {" "}
+            <button
+              style={{
+                backgroundColor: "#00b1f0",
+                color: "white",
+                height: "55px",
+                width: "150px",
+              }}
+              onClick={() => {
+                setshow("invisible");
+              }}
+            >
+              {" "}
+              ADD CONTACT
+              <IoMdContacts />{" "}
+            </button>
+          </div>
+          <div>
+            {" "}
+            <button
+              style={{
+                backgroundColor: "#9dd045",
+                color: "white",
+                height: "55px",
+                width: "150px",
+              }}
+              onClick={() => {
+                setshow("invisible");
+              }}
+            >
+              {" "}
+              ARCHIVE
+              <RiArchiveDrawerLine />
+            </button>
+          </div>
+          <div>
+            {" "}
+            <button
+              style={{
+                color: "white",
+                backgroundColor: "red",
+
+                height: "55px",
+                width: "150px",
+              }}
+              onClick={() => {
+                setshow("invisible");
+              }}
+            >
+              DELETE CONTACT
+              <BsFillTrashFill />{" "}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div id="smspage">
       <div class="flex-container">
         <Buttonpluscontact />
         <div>
           <ChatBox />
+        </div>
+        <div>
+          <Rightclickmenu />
         </div>
       </div>
     </div>

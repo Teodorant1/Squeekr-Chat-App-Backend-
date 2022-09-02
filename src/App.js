@@ -31,12 +31,28 @@ function App() {
 
   const [value, setValue] = React.useState(false);
 
+  function LoginMenu() {
+    return (
+      <div
+        id="homepage"
+        style={{
+          backgroundColor: "#00b1f0",
+          color: "white",
+          height: window.innerHeight,
+          width: window.innerWidth,
+        }}
+      >
+        Homepage{" "}
+      </div>
+    );
+  }
+
   function Leftmenu(props) {
     return (
       <div class={props} style={{ margin: 0 }} id="leftmenu">
         <div> {<SVGIcon4 />} </div>
         <button
-          style={{ width: 190, margin: 5 }}
+          style={{ backgroundColor: "#00b1f0", width: 190, margin: 5 }}
           type="button"
           className="btn btn-primary"
         >
@@ -44,21 +60,21 @@ function App() {
           Dashboard
         </button>
         <button
-          style={{ width: 190, margin: 5 }}
+          style={{ backgroundColor: "#00b1f0", width: 190, margin: 5 }}
           type="button"
           className="btn btn-primary"
         >
           {<SVGIcon13 />} <div style={{ justifycontent: "left" }}> </div> Chat
         </button>
         <button
-          style={{ width: 190, margin: 5 }}
+          style={{ backgroundColor: "#00b1f0", width: 190, margin: 5 }}
           type="button"
           className="btn btn-primary"
         >
           {<SVGIcon17 />} <div style={{ justifycontent: "left" }}> </div> SMS
         </button>
         <button
-          style={{ width: 190, margin: 5 }}
+          style={{ backgroundColor: "#00b1f0", width: 190, margin: 5 }}
           type="button"
           className="btn btn-primary"
         >
@@ -66,14 +82,14 @@ function App() {
           Voicemail
         </button>
         <button
-          style={{ width: 190, margin: 5 }}
+          style={{ backgroundColor: "#00b1f0", width: 190, margin: 5 }}
           type="button"
           className="btn btn-primary"
         >
           {<SVGIcon15 />} <div style={{ justifycontent: "left" }}> </div> Fax
         </button>
         <button
-          style={{ width: 190, margin: 5 }}
+          style={{ backgroundColor: "#00b1f0", width: 190, margin: 5 }}
           type="button"
           className="btn btn-primary"
         >
@@ -158,11 +174,13 @@ function App() {
     }
   }
 
-  if (toggled === true) {
-    return <Display1 props1={"p-3 mb-2 bg-dark text-white"} />;
-  } else {
-    return <Display1 props1={"p-3 mb-2 bg-light text-dark"} />;
-  }
+  return <LoginMenu />;
+
+  //  if (toggled === true) {
+  //    return <Display1 props1={"p-3 mb-2 bg-dark text-white"} />;
+  //  } else {
+  //    return <Display1 props1={"p-3 mb-2 bg-light text-dark"} />;
+  //  }
 }
 
 export default App;
