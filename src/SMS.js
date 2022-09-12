@@ -10,197 +10,146 @@ import "./App.css";
 import { BsFillTrashFill } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
 import { RiArchiveDrawerLine } from "react-icons/ri";
+import { Messagecatapult } from "./Messagecatapult";
+import { event } from "jquery";
 
-export default function SMS({ props }) {
+//export const MessageWindow = ({ user3, password3, target3 }) => {}
+
+export default function SMS({ user1, password1 }) {
   const [show, setshow] = useState("invisible");
   const [xaxis, setxaxis] = useState(0);
   const [yaxis, setyaxis] = useState(0);
 
-  const [username, setusername] = useState("paloki");
-  const [Password, setPassword] = useState("paloki");
-  const [apikey, setapikey] = useState("paloki");
-  const [destonumber, setdestonumber] = useState("paloki");
-  const [text, settext] = useState("paloki");
-  const [phonenumber, setphonenumber] = useState("paloki");
   const [visiblestatus, setvisiblestatus] = useState("invisible");
 
   const [currentmessages, setcurrentmessages] = useState({
-    Name: "Names 0",
-
+    Name: "Names1",
     messages: [
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author0", Text: "Text0", Size: "size0" },
-      { Author: "Author100", Text: "Text100", Size: "size100" },
+      {
+        Author: "Joanne",
+        Text: "Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1",
+        Segment: 1,
+        date: "08/09/2022",
+        time: "07:40:15 PM",
+        alignment: "left",
+      },
+      {
+        Author: "John",
+        Text: "Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1",
+        Segment: 2,
+        date: "08/09/2022",
+        time: "07:40:15 PM",
+        alignment: "right",
+      },
     ],
   });
 
   const [rightclicktarget, setrightclicktarget] = useState("Names 0");
 
-  const [contacts, getcontacts] = useState([
+  const [contacts, setcontacts] = useState([
     {
-      Name: "Names 1",
-      messages: [{ Author: "Author1", Text: "Text1", Size: "size2" }],
+      Name: "Names1",
+      messages: [
+        {
+          Author: "Author1",
+          Text: "Text1",
+          Segment: 1,
+          date: "08/09/2022",
+          time: "07:40:15 PM",
+          alignment: "left",
+        },
+      ],
     },
     {
-      Name: "Names 2",
-      messages: [{ Author: "Author2", Text: "Text2", Size: "size2" }],
+      Name: "Names2",
+      messages: [
+        {
+          Author: "Names2",
+          Text: "Text1",
+          Segment: 1,
+          date: "08/09/2022",
+          time: "07:40:15 PM",
+          alignment: "left",
+        },
+      ],
     },
     {
-      Name: "Names 3",
-      messages: [{ Author: "Author3", Text: "Text3", Size: "size3" }],
+      Name: "Names3",
+      messages: [
+        {
+          Author: "Names3",
+          Text: "Text1",
+          Segment: 1,
+          date: "08/09/2022",
+          time: "07:40:15 PM",
+          alignment: "left",
+        },
+      ],
     },
     {
-      Name: "Names 4",
-      messages: [{ Author: "Author4", Text: "Text4", Size: "size4" }],
+      Name: "Names4",
+      messages: [
+        {
+          Author: "Names4",
+          Text: "Text1",
+          Segment: 1,
+          date: "08/09/2022",
+          time: "07:40:15 PM",
+          alignment: "Left",
+        },
+      ],
     },
   ]);
   const messagesendref = useRef(null);
   const [endpoint1, setendpoint1] = useState("http://localhost:8001/getsms");
   const [endpoint2, setendpoint2] = useState("http://localhost:8002/sendsms");
-  const [endpoint3, setendpoint3] = useState("http://localhost:8003/sms");
-  const [cargo, setcargo] = useState({ method: "getcontacts", user: "john" });
-  const [cargo2, setcargo2] = useState({ method: "getcontacts", user: "john" });
-  const [cargo3, setcargo3] = useState({
-    from: "666666666",
-    to: "458967459867",
-    text: "Its Clear Converse",
-    media: "paloki",
-    segments: 2,
-    type: "SMS",
-  });
+  const [loginEndpoint, setloginEndpoint] = useState(
+    "http://localhost:8004/general"
+  );
 
-  // useEffect(() => {
-  //  messagesendref.current?.scrollintoView();
-  // }, [currentmessages]);
+  const [user, setuser] = useState(user1);
+  const [password, setpassword] = useState(password1);
 
-  function sendmessage(event) {
-    //  event.preventDefault();
-
-    const parcela1 =
-      "{ method:" +
-      cargo.method +
-      ",  user:" +
-      cargo.user +
-      ",Paloki:" +
-      cargo.user +
-      "}";
-    const parcela2 = JSON.stringify(cargo3);
-    const parcela3 =
-      "{ from:aquiznos" +
-      cargo3.from +
-      ", to:aquiznos" +
-      cargo3.to +
-      ", text:" +
-      cargo3.text +
-      "}";
+  const getmessages = () => {
+    //    event.preventDefault();
+    //    const receiver = window.sessionStorage.getItem("currentcontact");
+    const parcela1 = "{ user:" + user + ", password:" + password + "}";
 
     axios
-      .post(endpoint2, parcela3)
+      .post(endpoint1, parcela1)
       .then((resp) => {
         console.log(resp.data);
+        const palokisparcel = resp.data;
+
+        setcontacts(palokisparcel);
+        //      handleFilter(receiver);
+        //  setcurrentmessages(palokisparcel.at(0));
       })
       .catch((error) => console.log(error));
-  }
+  };
+
+  const sendmessage = async () => {
+    const messagetosend = document.getElementById("messagetext").value;
+
+    const parcela2 =
+      "{ from:" +
+      user +
+      ", to:" +
+      currentmessages.Name +
+      ",user:" +
+      user +
+      ",password:" +
+      password +
+      ", text:" +
+      messagetosend +
+      "}";
+
+    axios.post(endpoint2, parcela2).catch((error) => console.log(error));
+
+    //  getmessages();
+    //  const updatedcontacts = contacts;
+    //  setcurrentmessages(updatedcontacts.at(0));
+  };
 
   useEffect(() => {
     const handleClick = () => setshow("invisible");
@@ -208,150 +157,36 @@ export default function SMS({ props }) {
     return () => window.removeEventListener("click", handleClick);
   }, []);
 
-  async function handlesetCredentials(event) {
-    const zusername = document.getElementById("username").value;
-    const zpassword = document.getElementById("Password").value;
-    const zapikey = document.getElementById("apikey").value;
+  useEffect(() => {
+    const element = document.getElementById("theend");
+    element.scrollIntoView();
+  }, []);
 
-    const zphonenumber = document.getElementById("phonenumber").value;
-    // 5595001708
-    const zdestonumber = document.getElementById("destonumber").value;
-    const ztext = document.getElementById("text").value;
-    setusername(zusername);
-    setPassword(zpassword);
-    setapikey(zapikey);
+  useEffect(() => {
+    const element = document.getElementById("theend");
+    element.scrollIntoView();
+  }, [contacts]);
 
-    setphonenumber(zphonenumber);
-    setdestonumber(zdestonumber);
-    settext(ztext);
-  }
-
+  //  useEffect(() => {    setInterval(() => {       getmessages();     }, 1000);   }, []);
   function handleFilter(contactname) {
     var newArray = contacts.filter(function (el) {
       return el.Name == contactname;
     });
     console.log(newArray);
+    window.sessionStorage.setItem("currentcontact", contactname);
     setcurrentmessages(newArray[0]);
     console.log(currentmessages);
   }
 
-  function LoginInfo() {
-    return (
-      <div>
-        {" "}
-        <div class="flex-container">
-          <div>
-            <label htmlFor="username">
-              <h1>username</h1>
-            </label>
-
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              placeholder="username"
-            />
-          </div>
-
-          <div class="form-group">
-            <label htmlFor="Password">
-              <h1>Password</h1>
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="Password"
-              placeholder="Password"
-            />
-          </div>
-
-          <div class="form-group">
-            <label htmlFor="apikey">
-              <h1>api key</h1>
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="apikey"
-              placeholder="apikey"
-            />
-          </div>
-        </div>
-        <div class="flex-container">
-          {" "}
-          <div class="form-group">
-            <label htmlFor="phonenumber">
-              <h1>phonenumber</h1>
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="phonenumber"
-              placeholder="phonenumber"
-            />
-          </div>
-          <div class="form-group">
-            <label htmlFor="destonumber">
-              <h1>destonumber</h1>
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="destonumber"
-              placeholder="destonumber"
-            />
-          </div>
-          <div class="form-group">
-            <label htmlFor="text">
-              <h1>text</h1>
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="text"
-              placeholder="text"
-            />
-          </div>{" "}
-        </div>
-        <button
-          onClick={() => {
-            handlesetCredentials();
-          }}
-          type="submit"
-          style={{
-            backgroundColor: "#00b1f0",
-            color: "white",
-            height: "55px",
-            width: "150px",
-          }}
-        >
-          Set Credentials
-        </button>
-        <button
-          onClick={() => {
-            const element = document.getElementById("theend");
-
-            element.scrollIntoView();
-          }}
-          type="submit"
-          style={{
-            backgroundColor: "#00b1f0",
-            color: "white",
-            height: "55px",
-            width: "150px",
-          }}
-        >
-          SEND SMS
-        </button>
-      </div>
-      //buttons go up here
-    );
-  }
-
   function ChatBox() {
     return (
-      <div id="chatbox">
-        <LoginInfo />
+      <div
+        style={{
+          height: window.innerHeight * 0.75,
+          width: window.innerWidth * 0.8,
+        }}
+        id="chatbox"
+      >
         <table className="table">
           <thead>
             <tr>
@@ -365,11 +200,20 @@ export default function SMS({ props }) {
 
           <tbody>
             {currentmessages.messages.map((message) => (
-              <tr key={message.Size}>
+              <tr key={message.Segment}>
                 <td>
                   {" "}
-                  <div class="p-3 mb-2 bg-dark text-white">
-                    {message.Author + " : " + message.Text}{" "}
+                  <div
+                    style={{ textAlign: message.alignment }}
+                    class="p-3 mb-2 bg-dark text-white"
+                  >
+                    {message.date +
+                      " ,  " +
+                      message.time +
+                      " ,  " +
+                      message.Author +
+                      " : " +
+                      message.Text}{" "}
                   </div>
                 </td>
               </tr>
@@ -378,6 +222,22 @@ export default function SMS({ props }) {
             <div id="theend" ref={messagesendref} />
           </tbody>
         </table>
+        <button
+          style={{
+            backgroundColor: "#9dd045",
+            color: "white",
+            height: "50px",
+            width: "100%",
+          }}
+          onClick={() => {
+            //   setInterval(() => {
+            getmessages();
+            // }, 1000);
+          }}
+        >
+          {" "}
+          Fetch Messages{" "}
+        </button>{" "}
       </div>
     );
   }
@@ -391,6 +251,7 @@ export default function SMS({ props }) {
   }
 
   function Contactlist() {
+    //   console.log(contacts);
     const listitems = contacts.map((contact) => (
       <div key={contact.Name}>
         {" "}
@@ -400,14 +261,11 @@ export default function SMS({ props }) {
             style={{
               backgroundColor: "#9dd045",
               color: "white",
-              height: "55px",
-              width: "150px",
+              height: "45px",
+              width: "125px",
             }}
             onContextMenu={(event) => {
               event.preventDefault();
-
-              sendmessage();
-
               var newtarget = contact.Name;
               setrightclicktarget(newtarget);
               setshow("visible");
@@ -440,14 +298,16 @@ export default function SMS({ props }) {
 
   function Buttonpluscontact() {
     return (
-      <div>
+      <div id="buttonpluscontact">
         <button
           onClick={() => {
             togglecontacts();
           }}
           type="submit"
           style={{
-            backgroundColor: "#9dd045",
+            height: "55px",
+            width: "135px",
+            backgroundColor: "#c1ed74",
             color: "white",
           }}
         >
@@ -455,7 +315,6 @@ export default function SMS({ props }) {
         </button>
 
         <div class="invisible"> This is invisible </div>
-
         <ContactMap />
       </div>
     );
@@ -534,15 +393,13 @@ export default function SMS({ props }) {
   }
 
   return (
-    <div id="smspage">
-      <div class="flex-container">
-        <Buttonpluscontact />
-        <div>
-          <ChatBox />
-        </div>
-        <div>
-          <Rightclickmenu />
-        </div>
+    <div id="smspage" class="flex-container">
+      <Buttonpluscontact />
+      <div>
+        <ChatBox />
+      </div>
+      <div>
+        <Rightclickmenu />
       </div>
     </div>
   );
