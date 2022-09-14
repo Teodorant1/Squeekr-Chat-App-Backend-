@@ -138,6 +138,8 @@ export default function SMS({ user1, password1 }) {
           console.log("lawl, repeated with many repercussions");
         } else {
           setContacts(receivedinfo);
+          const element = document.getElementById("theend");
+          element.scrollIntoView();
         }
 
         //  handleFilter(target);
@@ -161,7 +163,10 @@ export default function SMS({ user1, password1 }) {
         setcurrentmessages(palokisparcel.at(0));
       })
       .catch((error) => console.log(error));
-    dispatch({ ...change, payload: { cargo: contacts.at(0).Name } });
+    dispatch({
+      ...change,
+      payload: { cargo: tempcontacts1.current.at(0).Name },
+    });
   };
 
   const sendmessage = async () => {
@@ -200,10 +205,10 @@ export default function SMS({ user1, password1 }) {
     element.scrollIntoView();
   }, []);
 
-  //  useEffect(() => {
-  //const element = document.getElementById("theend");     element.scrollIntoView();
-  //  }, [contacts]);
-  //  element.scrollIntoView();
+  useEffect(() => {
+    const element = document.getElementById("theend");
+    element.scrollIntoView();
+  }, [contacts]);
 
   useEffect(() => {
     getinitialmessages();
@@ -320,6 +325,8 @@ export default function SMS({ user1, password1 }) {
             }}
             onClick={() => {
               handleFilter(contact.Name);
+              const element = document.getElementById("theend");
+              element.scrollIntoView();
             }}
           >
             {" "}
