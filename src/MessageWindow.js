@@ -10,7 +10,6 @@ export const MessageWindow = ({ user3, password3 }) => {
 
   const [user, setuser] = react.useState(user3);
   const [password, setpassword] = react.useState(password3);
-  const [target, settarget] = react.useState(target3);
   const [endpoint, setendpoint] = useState("http://localhost:8002/sendsms");
 
   return (

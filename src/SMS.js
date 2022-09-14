@@ -10,12 +10,17 @@ import "./App.css";
 import { BsFillTrashFill } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
 import { RiArchiveDrawerLine } from "react-icons/ri";
-import { Messagecatapult } from "./Messagecatapult";
 import { event } from "jquery";
+import { useSelector, useDispatch } from "react-redux";
+import { change } from "./targetslice";
+
+// import { useTarget, useTargetUpdate } from "./TargetContext.JS";
 
 //export const MessageWindow = ({ user3, password3, target3 }) => {}
 
 export default function SMS({ user1, password1 }) {
+  const target = useSelector((state) => state.target.value);
+  const dispatch = useDispatch();
   const [show, setshow] = useState("invisible");
   const [xaxis, setxaxis] = useState(0);
   const [yaxis, setyaxis] = useState(0);
@@ -23,7 +28,7 @@ export default function SMS({ user1, password1 }) {
   const [visiblestatus, setvisiblestatus] = useState("invisible");
 
   const [currentmessages, setcurrentmessages] = useState({
-    Name: "Names1",
+    Name: "NamesA",
     messages: [
       {
         Author: "Joanne",
@@ -46,9 +51,9 @@ export default function SMS({ user1, password1 }) {
 
   const [rightclicktarget, setrightclicktarget] = useState("Names 0");
 
-  const [contacts, setcontacts] = useState([
+  const [contacts, setContacts] = useState([
     {
-      Name: "Names1",
+      Name: "NamesA",
       messages: [
         {
           Author: "Author1",
@@ -61,7 +66,7 @@ export default function SMS({ user1, password1 }) {
       ],
     },
     {
-      Name: "Names2",
+      Name: "NamesB",
       messages: [
         {
           Author: "Names2",
@@ -74,7 +79,7 @@ export default function SMS({ user1, password1 }) {
       ],
     },
     {
-      Name: "Names3",
+      Name: "NamesC",
       messages: [
         {
           Author: "Names3",
@@ -87,7 +92,7 @@ export default function SMS({ user1, password1 }) {
       ],
     },
     {
-      Name: "Names4",
+      Name: "NamesD",
       messages: [
         {
           Author: "Names4",
@@ -100,6 +105,8 @@ export default function SMS({ user1, password1 }) {
       ],
     },
   ]);
+  const tempcontacts1 = useRef("contacts");
+  tempcontacts1.current = contacts;
   const messagesendref = useRef(null);
   const [endpoint1, setendpoint1] = useState("http://localhost:8001/getsms");
   const [endpoint2, setendpoint2] = useState("http://localhost:8002/sendsms");
@@ -110,9 +117,36 @@ export default function SMS({ user1, password1 }) {
   const [user, setuser] = useState(user1);
   const [password, setpassword] = useState(password1);
 
-  const getmessages = () => {
-    //    event.preventDefault();
+  function getmessages() {
+    //  e.preventDefault();
     //    const receiver = window.sessionStorage.getItem("currentcontact");
+    const parcela1 = "{ user:" + user + ", password:" + password + "}";
+
+    axios
+      .post(endpoint1, parcela1)
+      .then((resp) => {
+        //  console.log(resp.data);
+        const receivedinfo = resp.data;
+        const obj1 = JSON.stringify(receivedinfo);
+        const obj2 = JSON.stringify(tempcontacts1.current);
+        //  console.log(obj1.length, obj2.length);
+        //  console.log(obj1);
+        //  console.log("XXXXXXXXXX");
+        //  console.log(obj2);
+        //  console.log(obj1, obj2);
+        if (obj1 == obj2) {
+          console.log("lawl, repeated with many repercussions");
+        } else {
+          setContacts(receivedinfo);
+        }
+
+        //  handleFilter(target);
+        //  setcurrentmessages(palokisparcel.at(0));
+      })
+      .catch((error) => console.log(error));
+  }
+
+  const getinitialmessages = () => {
     const parcela1 = "{ user:" + user + ", password:" + password + "}";
 
     axios
@@ -121,11 +155,13 @@ export default function SMS({ user1, password1 }) {
         console.log(resp.data);
         const palokisparcel = resp.data;
 
-        setcontacts(palokisparcel);
-        //      handleFilter(receiver);
-        //  setcurrentmessages(palokisparcel.at(0));
+        setContacts(palokisparcel);
+
+        // handleFilter(target);
+        setcurrentmessages(palokisparcel.at(0));
       })
       .catch((error) => console.log(error));
+    dispatch({ ...change, payload: { cargo: contacts.at(0).Name } });
   };
 
   const sendmessage = async () => {
@@ -145,6 +181,8 @@ export default function SMS({ user1, password1 }) {
       "}";
 
     axios.post(endpoint2, parcela2).catch((error) => console.log(error));
+    const element = document.getElementById("theend");
+    element.scrollIntoView();
 
     //  getmessages();
     //  const updatedcontacts = contacts;
@@ -162,18 +200,24 @@ export default function SMS({ user1, password1 }) {
     element.scrollIntoView();
   }, []);
 
-  useEffect(() => {
-    const element = document.getElementById("theend");
-    element.scrollIntoView();
-  }, [contacts]);
+  //  useEffect(() => {
+  //const element = document.getElementById("theend");     element.scrollIntoView();
+  //  }, [contacts]);
+  //  element.scrollIntoView();
 
-  //  useEffect(() => {    setInterval(() => {       getmessages();     }, 1000);   }, []);
+  useEffect(() => {
+    getinitialmessages();
+    setInterval(() => {
+      getmessages();
+    }, 5000);
+  }, []);
   function handleFilter(contactname) {
     var newArray = contacts.filter(function (el) {
       return el.Name == contactname;
     });
     console.log(newArray);
-    window.sessionStorage.setItem("currentcontact", contactname);
+    dispatch({ ...change, payload: { cargo: contactname } });
+    //window.sessionStorage.setItem("currentcontact", contactname);
     setcurrentmessages(newArray[0]);
     console.log(currentmessages);
   }
@@ -193,7 +237,7 @@ export default function SMS({ user1, password1 }) {
               {" "}
               <th>
                 {" "}
-                <div>SMS MESSAGES FROM:{" " + currentmessages.Name} </div>{" "}
+                <div>SMS MESSAGES FROM:{"  " + currentmessages.Name} </div>{" "}
               </th>{" "}
             </tr>
           </thead>
@@ -230,9 +274,11 @@ export default function SMS({ user1, password1 }) {
             width: "100%",
           }}
           onClick={() => {
-            //   setInterval(() => {
-            getmessages();
-            // }, 1000);
+            //  const element = document.getElementById("theend");
+            //  element.scrollIntoView();
+            setInterval(() => {
+              getmessages();
+            }, 5000);
           }}
         >
           {" "}
@@ -288,6 +334,8 @@ export default function SMS({ user1, password1 }) {
   function ContactMap() {
     return (
       <div id="contactlist" class={visiblestatus}>
+        <div> {target} </div>
+
         <div>
           {" "}
           <Contactlist />{" "}

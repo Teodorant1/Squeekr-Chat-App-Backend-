@@ -1,23 +1,25 @@
-import react from "react";
+import react, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios, { Axios } from "axios";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { change } from "./targetslice";
 
-export const Messagecatapult = ({ user4, password4 }) => {
+export function Messagecatapult({ user4, password4 }) {
   const [user, setuser] = react.useState(user4);
   const [password, setpassword] = react.useState(password4);
   const [endpoint, setendpoint] = useState("http://localhost:8002/sendsms");
+  const target = useSelector((state) => state.target.value);
 
   const sendmessage = async () => {
     const messagetosend = document.getElementById("messagetext").value;
-
-    const receiver = window.sessionStorage.getItem("currentcontact");
+    //const receiver = window.sessionStorage.getItem("currentcontact");
 
     const parcela2 =
       "{ from:" +
       user +
       ", to:" +
-      receiver +
+      target +
       ",user:" +
       user +
       ",password:" +
@@ -36,6 +38,7 @@ export const Messagecatapult = ({ user4, password4 }) => {
   return (
     <div>
       {" "}
+      {target}
       <div class="form-group">
         <input
           type="text"
@@ -60,4 +63,4 @@ export const Messagecatapult = ({ user4, password4 }) => {
       </div>{" "}
     </div>
   );
-};
+}

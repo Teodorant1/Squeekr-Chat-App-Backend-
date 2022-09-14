@@ -16,13 +16,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Toggle from "./Toggle";
 import "./App.css";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import SMS from "./SMS";
 import Axios from "axios";
 import { event } from "jquery";
 import { Messagecatapult } from "./Messagecatapult";
 
+const Targetcontext = React.createContext();
+
 function App() {
+  const [target, settarget] = useState("Paloki");
+
   const [toggled, setToggled] = React.useState(true);
   const handleClick = () => {
     setToggled((s) => !s);
@@ -319,9 +323,18 @@ function App() {
   if (pagename == "loginpage") {
     return <LoginMenu />;
   } else if (toggled === true) {
-    return <Display1 />;
+    return (
+      <Targetcontext.Provider value={{ target, settarget }}>
+        <Display1 />{" "}
+      </Targetcontext.Provider>
+    );
   } else {
-    return <Display1 />;
+    return (
+      <Targetcontext.Provider value={{ target, settarget }}>
+        {" "}
+        <Display1 />{" "}
+      </Targetcontext.Provider>
+    );
   }
 }
 
