@@ -129,69 +129,67 @@ export default function SMS({ user1, password1 }) {
         const receivedinfo = resp.data;
         const obj1 = JSON.stringify(receivedinfo);
         const obj2 = JSON.stringify(tempcontacts1.current);
-        //  console.log(obj1.length, obj2.length);
-        //  console.log(obj1);
-        //  console.log("XXXXXXXXXX");
-        //  console.log(obj2);
-        //  console.log(obj1, obj2);
-        if (obj1 == obj2) {
-          console.log("lawl, repeated with many repercussions");
+        console.log("Target is: " + target);
+
+        if (obj1.length === obj2.length) {
+          console.log("lawl");
         } else {
           setContacts(receivedinfo);
+          console.log(target);
+
+          //this bricks the entire program
+          // because of the current stale closure with redux
+          handleFilter(target);
+
           const element = document.getElementById("theend");
           element.scrollIntoView();
         }
 
-        //  handleFilter(target);
         //  setcurrentmessages(palokisparcel.at(0));
       })
       .catch((error) => console.log(error));
   }
 
-  const getinitialmessages = () => {
+  const getinitialmessages = (target) => {
     const parcela1 = "{ user:" + user + ", password:" + password + "}";
-
+    const target2 = target;
     axios
       .post(endpoint1, parcela1)
       .then((resp) => {
         console.log(resp.data);
-        const palokisparcel = resp.data;
+        const receivedinfo = resp.data;
 
-        setContacts(palokisparcel);
+        const obj1 = JSON.stringify(receivedinfo);
+        const obj2 = JSON.stringify(tempcontacts1.current);
 
-        // handleFilter(target);
-        setcurrentmessages(palokisparcel.at(0));
+        console.log("Target is: " + target);
+
+        if (obj1.length == obj2.length) {
+          console.log("lawl");
+        } else {
+          setContacts(receivedinfo);
+          console.log(target);
+
+          //this bricks the entire program
+          // because of the current stale closure with redux
+          const element = document.getElementById("theend");
+          element.scrollIntoView();
+        }
+
+        //  setcurrentmessages(palokisparcel.at(0));
+        console.log("Target2 is:" + target2);
+        if (target2 == "Unassigned") {
+          dispatch(
+            change(receivedinfo.at(0).Name)
+            //  type: "change",
+            //  payload: { cargo: palokisparcel.at(0).Name },
+          );
+        }
+
+        //  console.log(target.Name);
+        console.log(target);
       })
       .catch((error) => console.log(error));
-    dispatch({
-      ...change,
-      payload: { cargo: tempcontacts1.current.at(0).Name },
-    });
-  };
-
-  const sendmessage = async () => {
-    const messagetosend = document.getElementById("messagetext").value;
-
-    const parcela2 =
-      "{ from:" +
-      user +
-      ", to:" +
-      currentmessages.Name +
-      ",user:" +
-      user +
-      ",password:" +
-      password +
-      ", text:" +
-      messagetosend +
-      "}";
-
-    axios.post(endpoint2, parcela2).catch((error) => console.log(error));
-    const element = document.getElementById("theend");
-    element.scrollIntoView();
-
-    //  getmessages();
-    //  const updatedcontacts = contacts;
-    //  setcurrentmessages(updatedcontacts.at(0));
   };
 
   useEffect(() => {
@@ -211,19 +209,37 @@ export default function SMS({ user1, password1 }) {
   }, [contacts]);
 
   useEffect(() => {
-    getinitialmessages();
-    setInterval(() => {
-      getmessages();
-    }, 5000);
+    getinitialmessages(target);
   }, []);
-  function handleFilter(contactname) {
+
+  useEffect(() => {
+    handleFilter(target);
+    const timer = setInterval(() => {
+      getinitialmessages(target);
+      //   getmessages();
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [target, contacts]);
+
+  function handleFilter(target1) {
     var newArray = contacts.filter(function (el) {
-      return el.Name == contactname;
+      return el.Name == target1;
     });
     console.log(newArray);
-    dispatch({ ...change, payload: { cargo: contactname } });
+    //   dispatch(
+    //    change(contactname)
+    //  type: "change",
+    //  payload: { cargo: palokisparcel.at(0).Name },
+    //  );
     //window.sessionStorage.setItem("currentcontact", contactname);
-    setcurrentmessages(newArray[0]);
+
+    if (newArray.length > 0) {
+      setcurrentmessages(newArray[0]);
+    }
+
     console.log(currentmessages);
   }
 
@@ -271,24 +287,6 @@ export default function SMS({ user1, password1 }) {
             <div id="theend" ref={messagesendref} />
           </tbody>
         </table>
-        <button
-          style={{
-            backgroundColor: "#9dd045",
-            color: "white",
-            height: "50px",
-            width: "100%",
-          }}
-          onClick={() => {
-            //  const element = document.getElementById("theend");
-            //  element.scrollIntoView();
-            setInterval(() => {
-              getmessages();
-            }, 5000);
-          }}
-        >
-          {" "}
-          Fetch Messages{" "}
-        </button>{" "}
       </div>
     );
   }
@@ -324,7 +322,12 @@ export default function SMS({ user1, password1 }) {
               setxaxis(event.pageX);
             }}
             onClick={() => {
-              handleFilter(contact.Name);
+              //handleFilter(contact.Name);
+              dispatch(
+                change(contact.Name)
+                //  type: "change",
+                //  payload: { cargo: palokisparcel.at(0).Name },
+              );
               const element = document.getElementById("theend");
               element.scrollIntoView();
             }}
