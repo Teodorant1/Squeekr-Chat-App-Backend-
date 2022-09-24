@@ -4,6 +4,7 @@ import axios, { Axios } from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { change } from "./targetslice";
+import "./App.css";
 
 export function Messagecatapult({ user4, password4 }) {
   const [user, setuser] = react.useState(user4);
@@ -14,7 +15,6 @@ export function Messagecatapult({ user4, password4 }) {
 
   const sendmessage = async () => {
     const messagetosend = document.getElementById("messagetext").value;
-    //const receiver = window.sessionStorage.getItem("currentcontact");
 
     const parcela2 =
       "{ from:" +
@@ -25,22 +25,25 @@ export function Messagecatapult({ user4, password4 }) {
       user +
       ",password:" +
       password +
-      ", text:" +
+      ", text:zsocnalimunada" +
       messagetosend +
       "}";
 
     axios.post(endpoint, parcela2).catch((error) => console.log(error));
-
-    //  getmessages();
-    //  const updatedcontacts = contacts;
-    //  setcurrentmessages(updatedcontacts.at(0));
   };
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#00b1f0",
+        color: "white",
+        height: "60px",
+        width: window.innerWidth * 0.99999,
+      }}
+      id="mcatapult"
+    >
       {" "}
-      {target}
-      <div class="form-group">
+      <div class="p-3 mb-2 bg-info text-white form-group">
         <input
           type="text"
           className="form-control"

@@ -206,7 +206,7 @@ export default function SMS({ user1, password1 }) {
   useEffect(() => {
     const element = document.getElementById("theend");
     element.scrollIntoView();
-  }, [contacts]);
+  }, [contacts, currentmessages]);
 
   useEffect(() => {
     getinitialmessages(target);
@@ -248,7 +248,7 @@ export default function SMS({ user1, password1 }) {
       <div
         style={{
           height: window.innerHeight * 0.75,
-          width: window.innerWidth * 0.8,
+          width: window.innerWidth * 0.75,
         }}
         id="chatbox"
       >
@@ -269,16 +269,15 @@ export default function SMS({ user1, password1 }) {
                 <td>
                   {" "}
                   <div
-                    style={{ textAlign: message.alignment }}
-                    class="p-3 mb-2 bg-dark text-white"
+                    style={{
+                      float: message.alignment,
+                      width: window.innerWidth * 0.4,
+                    }}
+                    class={message.alignment}
                   >
-                    {message.date +
-                      " ,  " +
-                      message.time +
-                      " ,  " +
-                      message.Author +
-                      " : " +
-                      message.Text}{" "}
+                    {" "}
+                    <div> {message.date + " ,  " + message.time} </div>
+                    {message.Author + " : " + message.Text}{" "}
                   </div>
                 </td>
               </tr>
@@ -344,8 +343,6 @@ export default function SMS({ user1, password1 }) {
   function ContactMap() {
     return (
       <div id="contactlist" class={visiblestatus}>
-        <div> {target} </div>
-
         <div>
           {" "}
           <Contactlist />{" "}

@@ -140,7 +140,7 @@ function App() {
 
   function Leftmenu() {
     return (
-      <div style={{ margin: 0 }} id="leftmenu">
+      <div id="leftmenu">
         <div> {<SVGIcon4 />} </div>
 
         <button
@@ -304,6 +304,19 @@ function App() {
     }
   }
 
+  function FullSMS() {
+    return (
+      <div>
+        <SMS user1={username0} password1={password0} />{" "}
+        <Messagecatapult
+          user4={username0}
+          password4={password0}
+          target4={"paloki"}
+        />
+      </div>
+    );
+  }
+
   function Center() {
     if (pagename == "sms")
       return (
@@ -323,18 +336,9 @@ function App() {
   if (pagename == "loginpage") {
     return <LoginMenu />;
   } else if (toggled === true) {
-    return (
-      <Targetcontext.Provider value={{ target, settarget }}>
-        <Display1 />{" "}
-      </Targetcontext.Provider>
-    );
+    return <Display1 />;
   } else {
-    return (
-      <Targetcontext.Provider value={{ target, settarget }}>
-        {" "}
-        <Display1 />{" "}
-      </Targetcontext.Provider>
-    );
+    return <Display1 />;
   }
 }
 

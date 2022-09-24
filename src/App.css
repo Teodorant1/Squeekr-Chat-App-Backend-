@@ -115,6 +115,9 @@ background-color:#9dd045;}
   
 }
 
+#mcatapult{
+  position: relative;
+}
 
 
 .flex-container {
@@ -140,6 +143,79 @@ background-color:#9dd045;}
 }
 
 
+
+/* CSS talk bubble */
+
+
+
+.left {
+	margin: 40px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	background-color: lightyellow;
+
+
+  border: 20px solid #00b1f0;
+  background-color: #00b1f0;
+
+
+  border-radius: 80px;
+	-webkit-border-radius: 80px;
+	-moz-border-radius: 30px;
+}
+	.right {
+		margin: 40px;
+	  display: inline-block;
+	  position: relative;
+		width: 200px;
+		height: auto;
+		background-color: lightyellow;
+	
+	
+	  border: 20px solid #9dd045;
+	  background-color: #9dd045;
+	
+	
+  border-radius: 80px;
+	-webkit-border-radius: 80px;;
+	-moz-border-radius: 30px;
+	
+	}
+
+
+
+/*Right triangle, placed bottom left side slightly in*/
+
+/*Right triangle, placed bottom right side slightly in*/
+
+/*
+	left: -8px;
+  right: auto;
+  top: auto;
+	bottom: -40px;
+	border: 32px solid;
+	border-color: transparent transparent transparent #666;
+	left: 0px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 22px solid;
+	border-color: transparent transparent transparent lightyellow;
+
+/*Right triangle, placed bottom right side slightly in*/
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+	text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
 
 @keyframes App-logo-spin {
   from {
