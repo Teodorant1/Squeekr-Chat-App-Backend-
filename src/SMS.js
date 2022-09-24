@@ -271,7 +271,7 @@ export default function SMS({ user1, password1 }) {
                   <div
                     style={{
                       float: message.alignment,
-                      width: window.innerWidth * 0.4,
+                      width: window.innerWidth * 0.41,
                     }}
                     class={message.alignment}
                   >
