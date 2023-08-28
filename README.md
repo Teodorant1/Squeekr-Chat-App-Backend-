@@ -1,3 +1,5 @@
+## This repo is the frontend for this backend repo https://github.com/Teodorant1/SqueekerAuth/blob/master/README.md
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
